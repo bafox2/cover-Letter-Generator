@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Loginbtn from '../components/Loginbtn'
 import styles from '../styles/Home.module.scss'
 
 export default function Home() {
@@ -50,6 +51,7 @@ export default function Home() {
             </p>
           </a>
         </div>
+        <Loginbtn />
       </main>
 
       <footer className={styles.footer}>
