@@ -18,23 +18,21 @@ const Header = () => {
         </ul>
       </nav>
       <div>
-        <p>
-          {session ? (
-            <>
-              Signed in as {session?.user.name}{' '}
-              <span>
-                <Image src={session?.user.image} height={32} width={32}></Image>
-              </span>
-              <br />
-              <button onClick={() => signOut()}>Sign out</button>
-            </>
-          ) : (
-            <>
-              Not signed in <br />
-              <button onClick={() => signIn()}>Sign in</button>
-            </>
-          )}
-        </p>
+        {session ? (
+          <>
+            Signed in as {session?.user.name}{' '}
+            <span>
+              <Image src={session?.user.image} height={32} width={32}></Image>
+            </span>
+            <br />
+            <button onClick={() => signOut()}>Sign out</button>
+          </>
+        ) : (
+          <>
+            Not signed in <br />
+            <button onClick={() => signIn()}>Sign in</button>
+          </>
+        )}
       </div>
     </header>
   )
