@@ -38,12 +38,22 @@ const UserPage = ({ user }) => {
           </Link>
         )}
         <div>
-          <Link href={'/query'}>
+          <Link
+            href={{
+              pathname: '/request',
+              query: { name: router.query.name },
+            }}
+          >
             <a>New Query</a>
           </Link>
         </div>
         <div>
-          <Link href={'/sample'}>
+          <Link
+            href={{
+              pathname: '/sampleletter',
+              query: { name: router.query.name },
+            }}
+          >
             <a>New Cover Letter</a>
           </Link>
         </div>

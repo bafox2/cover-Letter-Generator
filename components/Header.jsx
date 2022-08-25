@@ -1,8 +1,11 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 const Header = () => {
   const { data: session } = useSession()
+  //use the nextjs router
+  const router = useRouter()
   return (
     <header className="header">
       <nav>
