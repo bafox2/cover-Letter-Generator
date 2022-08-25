@@ -1,5 +1,6 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
+import Link from 'next/link'
 const Header = () => {
   const { data: session } = useSession()
   return (
@@ -7,26 +8,34 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link href="/about">
+              <a>About</a>
+            </Link>
           </li>
           <li>
-            <a href="/example">Example</a>
+            <Link href="/example">
+              <a>Example</a>
+            </Link>
           </li>
         </ul>
       </nav>
       <div>
         {session ? (
-          <>
-            Signed in as {session?.user.name}{' '}
-            <span>
-              <Image src={session?.user.image} height={32} width={32}></Image>
-            </span>
-            <br />
-            <button onClick={() => signOut()}>Sign out</button>
-          </>
+          <Link href={`${session?.user.name}`}>
+            <a>
+              Signed in as {session?.user.name}{' '}
+              <span>
+                <Image src={session?.user.image} height={32} width={32}></Image>
+              </span>
+              <br />
+              <button onClick={() => signOut()}>Sign out</button>
+            </a>
+          </Link>
         ) : (
           <>
             Not signed in <br />
