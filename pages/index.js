@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import Loginbtn from '../components/Loginbtn'
 import styles from '../styles/Home.module.scss'
 
 export default function Home() {
@@ -19,8 +18,6 @@ export default function Home() {
         <p className={styles.description}>
           Get started by logging into your Github account.
         </p>
-
-        <Loginbtn />
         <div className={styles.grid}>
           <Link href="/about">
             <a href="https://nextjs.org/docs" className={styles.card}>

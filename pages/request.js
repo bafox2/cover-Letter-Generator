@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
-import Loginbtn from '../components/Loginbtn'
 import { useForm } from 'react-hook-form'
 
 export default function QueryPage() {
@@ -60,7 +59,6 @@ export default function QueryPage() {
           </div>
           <button type="submit">Submit</button>
         </form>
-        <Loginbtn />
       </main>
 
       <footer className={styles.footer}>
