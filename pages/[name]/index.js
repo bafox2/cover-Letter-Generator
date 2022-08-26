@@ -50,10 +50,10 @@ const UserPage = ({ user }) => {
         <div>
           <Link
             href={{
-              pathname: `${router.query.name}/sampleletters`,
+              pathname: `${router.query.name}/requests/new`,
             }}
           >
-            <a>New Cover Letter</a>
+            <a>Past Queries</a>
           </Link>
         </div>
       </div>

@@ -23,42 +23,29 @@ export default function QueryPage() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Powered by <a href="https://openai.com">open.ai!</a>
-        </h1>
+        <h1 className={styles.title}>Your Requests</h1>
 
-        {/*  will need to either add this to the form, or adjust the component to already have the thing from the database  */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <p className={styles.description}>
-            Get started by uploading a cover letter
-            <input type="file" id="file" />
-          </p>
+        <div className={styles.grid}>
+          <a className={styles.card}>
+            <h2>Your Strengths</h2>
+            <input
+              type="text"
+              className="input"
+              {...register('strengths', { required: true })}
+            />
+          </a>
 
-          <div className={styles.grid}>
-            <a className={styles.card}>
-              <h2>Your Strengths</h2>
-              <input
-                type="text"
-                className="input"
-                {...register('strengths', { required: true })}
-              />
-            </a>
+          <a className={styles.card}>
+            <h2>Company Highlights</h2>
+            <input
+              type="text"
+              className="input"
+              {...register('highlights', { required: true })}
+            />
+          </a>
+        </div>
 
-            <a className={styles.card}>
-              <h2>Company Highlights</h2>
-              <input
-                type="text"
-                className="input"
-                {...register('highlights', { required: true })}
-              />
-            </a>
-          </div>
-          <div className={styles.grid}>
-            {errors.strengths && <span>This is required</span>}
-            {errors.highlights && <span>This is required</span>}
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+        <button type="submit">Submit</button>
       </main>
     </div>
   )

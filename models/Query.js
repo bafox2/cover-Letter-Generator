@@ -4,10 +4,7 @@ const QuerySchema = new mongoose.Schema(
   {
     Strengths: String,
     Highlights: String,
-    CoverLetter: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'CoverLetter',
-    },
+    Response: String,
   },
   { collection: 'queries' }
 )

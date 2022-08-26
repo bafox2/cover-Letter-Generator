@@ -83,6 +83,9 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+  &.wide {
+    max-width: 800px;
+  }
 }
 
 .card:hover,
@@ -101,6 +104,10 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.card .wide {
+  max-width: 800px;
 }
 
 .logo {
