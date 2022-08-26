@@ -7,10 +7,9 @@ import { useSession, getSession } from 'next-auth/react'
 
 /* Allows you to view user card info and delete user card*/
 const UserPage = ({ user }) => {
-  const { data: session } = getSession()
+  const { data: session, status } = useSession()
 
-  console.log(session, 'session being callled in user page')
-  const router = useRouter()
+  console.log(session, 'session being callled in user page with useSession')
   const handleDelete = async () => {
     const username = router.query.name
 
@@ -22,6 +21,14 @@ const UserPage = ({ user }) => {
     } catch (error) {
       setMessage('Failed to delete the user.')
     }
+  }
+
+  if (!session) {
+    return (
+      <main>
+        <div>you</div>
+      </main>
+    )
   }
 
   return (
@@ -41,15 +48,7 @@ const UserPage = ({ user }) => {
             <a>View Cover Letter</a>
           </Link>
         )}
-        <div>
-          <Link
-            href={{
-              pathname: `${router.query.name}/requests`,
-            }}
-          >
-            <a>New Query</a>
-          </Link>
-        </div>
+
         <div>
           <Link
             href={{
@@ -70,7 +69,7 @@ export async function getServerSideProps(context) {
   console.log(session, 'session being callled in getServerSideProps')
   await dbConnect()
 
-  const user = await User.findOne({ name: session.user.name }).lean()
+  const user = await User.findOne({ name: session?.user.name }).lean()
 
   return { props: { user: JSON.parse(JSON.stringify(user)) } }
 }
