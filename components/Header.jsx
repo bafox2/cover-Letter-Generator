@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 const Header = () => {
   const { data: session } = useSession()
+  console.log(session, 'session from header')
   //use the nextjs router
   return (
     <header className="header">
@@ -30,7 +31,7 @@ const Header = () => {
         {session ? (
           <Link
             href={{
-              pathname: `/}`,
+              pathname: `/dashboard`,
             }}
           >
             <a>

@@ -3,9 +3,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dbConnect from '../../lib/dbConnect'
 import User from '../../models/User'
+import { useSession, getSession } from 'next-auth/react'
 
 /* Allows you to view user card info and delete user card*/
 const UserPage = ({ user }) => {
+  const { data: session } = getSession()
+
+  console.log(session, 'session being callled in user page')
   const router = useRouter()
   const handleDelete = async () => {
     const username = router.query.name
@@ -49,7 +53,7 @@ const UserPage = ({ user }) => {
         <div>
           <Link
             href={{
-              pathname: `${router.query.name}/requests/new`,
+              pathname: `/dashboard/new`,
             }}
           >
             <a>Past Queries</a>
@@ -61,10 +65,12 @@ const UserPage = ({ user }) => {
   )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  console.log(session, 'session being callled in getServerSideProps')
   await dbConnect()
 
-  const user = await User.findOne({ name: params.name }).lean()
+  const user = await User.findOne({ name: session.user.name }).lean()
 
   return { props: { user: JSON.parse(JSON.stringify(user)) } }
 }

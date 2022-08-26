@@ -1,4 +1,4 @@
-import styles from '../../../styles/Home.module.scss'
+import styles from '../../styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import { useSession } from 'next-auth/react'
 

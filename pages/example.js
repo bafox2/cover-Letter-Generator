@@ -13,26 +13,26 @@ export default function Example() {
         <h2>Inputs</h2>
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h2>Strengths</h2>
-            <p>
-              Hard worker. Fast learner. Good communicator. Domain knowledge.
-              Creativity.
-            </p>
+            <h2>Company</h2>
+            <p>Vercel</p>
           </div>
-
+          <div className={styles.card}>
+            <h2>Position</h2>
+            <p>Junior Developer</p>
+          </div>
           <div className={styles.card}>
             <h2>Company Highlights</h2>
             <p>
-              Good culture. Ethics. Open-minded. Developer oriented. Mentorship
-              programs.
+              Company with the fastest and most developer friendly deployment in
+              all of web development.
             </p>
           </div>
 
           <div className={styles.card}>
-            <h2>Writing Sample</h2>
+            <h2>Job Listing</h2>
             <p>
-              Openai is a great tool to use for machine learning, and a fountain
-              of inspiration for possibilities in the future.
+              Work with a team to build web applications that are user focused.
+              Integrate systems.
             </p>
           </div>
         </div>
