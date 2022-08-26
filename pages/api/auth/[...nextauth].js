@@ -9,4 +9,15 @@ export default NextAuth({
     }),
   ],
   secret: process.env.SECRET,
+  callbacks: {
+    async registeToDB(session, token, user) {
+      console(session, token, user, 'registeToDB params')
+      // const user = await db.collection('users').findOne({ name })
+      // if (user) {
+      //   return res.status(400).json({ message: 'User already exists' })
+      // }
+      // await db.collection('users').insertOne({ name, email })
+      // return res.status(200).json({ message: 'User created' })
+    },
+  },
 })

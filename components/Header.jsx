@@ -30,7 +30,7 @@ const Header = () => {
         {session ? (
           <Link
             href={{
-              pathname: `/${session.user.name}`,
+              pathname: `/}`,
             }}
           >
             <a>

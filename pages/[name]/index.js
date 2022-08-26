@@ -7,7 +7,6 @@ import User from '../../models/User'
 /* Allows you to view user card info and delete user card*/
 const UserPage = ({ user }) => {
   const router = useRouter()
-  console.log(router, 'router')
   const handleDelete = async () => {
     const username = router.query.name
 
