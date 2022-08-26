@@ -14,7 +14,7 @@ export default async function (req, res) {
     frequency_penalty: 1.54,
     presence_penalty: 1.52,
   })
-  res.status(200).json({ result: response.data.choices[0].text })
+  res.json({ result: response.data.choices[0].text })
 }
 
 function generatePrompt(data) {

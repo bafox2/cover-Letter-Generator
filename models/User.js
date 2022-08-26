@@ -4,13 +4,6 @@ const UserSchema = new mongoose.Schema(
   {
     name: String,
     avatar: String,
-
-    queries: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Query',
-      },
-    ],
   },
   { collection: 'users' }
 )
