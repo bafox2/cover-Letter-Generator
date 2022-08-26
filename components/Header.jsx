@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 const Header = () => {
   const { data: session } = useSession()
   //use the nextjs router
-  const router = useRouter()
   return (
     <header className="header">
       <nav>
@@ -29,7 +28,11 @@ const Header = () => {
       </nav>
       <div>
         {session ? (
-          <Link href={`${session?.user.name}`}>
+          <Link
+            href={{
+              pathname: `/${session.user.name}`,
+            }}
+          >
             <a>
               Signed in as {session?.user.name}{' '}
               <span>

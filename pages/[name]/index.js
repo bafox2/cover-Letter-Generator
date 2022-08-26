@@ -7,6 +7,7 @@ import User from '../../models/User'
 /* Allows you to view user card info and delete user card*/
 const UserPage = ({ user }) => {
   const router = useRouter()
+  console.log(router, 'router')
   const handleDelete = async () => {
     const username = router.query.name
 
@@ -40,8 +41,7 @@ const UserPage = ({ user }) => {
         <div>
           <Link
             href={{
-              pathname: '/request',
-              query: { name: router.query.name },
+              pathname: `${router.query.name}/requests`,
             }}
           >
             <a>New Query</a>
@@ -50,8 +50,7 @@ const UserPage = ({ user }) => {
         <div>
           <Link
             href={{
-              pathname: '/sampleletter',
-              query: { name: router.query.name },
+              pathname: `${router.query.name}/sampleletters`,
             }}
           >
             <a>New Cover Letter</a>
