@@ -4,10 +4,8 @@ import gpt from '../gpt'
 import { useSession } from 'next-auth/react'
 
 export default async function handler(req, res) {
-  const { method, body } = req
-  console.log(body, 'this is from index.js of request')
   await dbConnect()
-
+  const { method } = req
   switch (method) {
     case 'GET':
       try {
@@ -20,9 +18,15 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const request = await Request.create({
-          ...body,
-          result: await gpt(body.data),
+          company: req.body.data.data.company,
+          position: req.body.data.data.position,
+          jobListing: req.body.data.data.jobListing,
+          highlights: req.body.data.data.highlights,
+          user: req.body.data.user,
+          result: 'gpt(body.data)',
+          // result: await gpt(body.data),
         })
+        console.log('this is the result of the request', request)
         res.status(201).json(request)
       } catch (error) {
         console.log(error)
@@ -34,3 +38,8 @@ export default async function handler(req, res) {
       break
   }
 }
+
+// const example = {
+//   data: { company: 'a', positition: 'a', highlights: 'a', jobListing: 'a' },
+//   user: 'bafox2'
+// }

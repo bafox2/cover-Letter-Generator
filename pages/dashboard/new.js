@@ -2,7 +2,6 @@ import styles from '../../styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import { getSession } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
-import { requireAuth } from '../api/auth/requireAuth'
 
 export default function QueryPage() {
   //validations - maxlength for some, minlength,
@@ -16,7 +15,7 @@ export default function QueryPage() {
 
   const { data: session } = useSession()
   async function onSubmit(data) {
-    data = { ...data, user: session.user.name }
+    data = { data, user: session.user.name }
     const response = await fetch('/api/requests', {
       method: 'POST',
       headers: {
