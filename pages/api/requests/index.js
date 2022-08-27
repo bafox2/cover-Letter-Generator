@@ -21,12 +21,11 @@ export default async function handler(req, res) {
       try {
         const request = await Request.create({
           ...body,
-          // user: session.user.name,
-          result: 'sampleresult',
-          // Result: await gpt(body),
+          result: await gpt(body.data),
         })
         res.status(201).json(request)
       } catch (error) {
+        console.log(error)
         res.status(500).json({ error: error.message })
       }
       break

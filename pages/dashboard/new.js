@@ -1,10 +1,11 @@
 import styles from '../../styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
+import { getSession } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
+import { requireAuth } from '../api/auth/requireAuth'
 
 export default function QueryPage() {
   //validations - maxlength for some, minlength,
-  const { data: session } = useSession()
 
   //could add user to the body
   const {
@@ -13,6 +14,7 @@ export default function QueryPage() {
     formState: { errors },
   } = useForm()
 
+  const { data: session } = useSession()
   async function onSubmit(data) {
     data = { ...data, user: session.user.name }
     const response = await fetch('/api/requests', {
@@ -22,7 +24,6 @@ export default function QueryPage() {
       },
       body: JSON.stringify({ data }),
     })
-    console.log('this is what the response was', response)
     const json = await response.json()
   }
 
@@ -49,4 +50,21 @@ export default function QueryPage() {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const sessionAuth = await getSession(context)
+  console.log(sessionAuth, 'sessionfr om server side')
+  if (!sessionAuth) {
+    return {
+      redirect: {
+        destination: '/unauthenticated',
+        permanent: false,
+      },
+    }
+  } else {
+    return {
+      props: {},
+    }
+  }
 }

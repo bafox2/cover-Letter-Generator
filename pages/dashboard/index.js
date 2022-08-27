@@ -3,10 +3,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dbConnect from '../../lib/dbConnect'
 import User from '../../models/User'
+import Requests from '../../models/Request'
 import { useSession, getSession } from 'next-auth/react'
 
-/* Allows you to view user card info and delete user card*/
-const UserPage = ({ user }) => {
+const UserPage = ({ user, requests }) => {
   const { data: session, status } = useSession()
 
   console.log(session, 'session being callled in user page with useSession')
@@ -57,6 +57,15 @@ const UserPage = ({ user }) => {
           >
             <a>Past Queries</a>
           </Link>
+          <div>
+            {requests.map((request) => (
+              <div key={request._id}>
+                <Link href={`/dashboard/${request._id}`}>
+                  <a>{request.company}</a>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <button onClick={handleDelete}>Delete Self</button>
@@ -66,12 +75,27 @@ const UserPage = ({ user }) => {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  console.log(session, 'session being callled in getServerSideProps')
-  await dbConnect()
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/unauthenticated',
+        permanent: false,
+      },
+    }
+  } else {
+    await dbConnect()
 
-  const user = await User.findOne({ name: session?.user.name }).lean()
+    const user = await User.findOne({ name: session?.user.name }).lean()
+    const requests = await Requests.find({ user: session.user.name }).lean()
+    console.log(requests, 'requests')
 
-  return { props: { user: JSON.parse(JSON.stringify(user)) } }
+    return {
+      props: {
+        user: JSON.parse(JSON.stringify(user)),
+        requests: JSON.parse(JSON.stringify(requests)),
+      },
+    }
+  }
 }
 
 export default UserPage

@@ -8,7 +8,7 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async registeToDB(session, token, user) {
       console(session, token, user, 'registeToDB params')
