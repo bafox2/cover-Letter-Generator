@@ -1,10 +1,17 @@
 import Request from '../../models/Request'
 import dbConnect from '../../lib/dbConnect'
-import { getSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/react'
 
 const SampleLetter = ({ request }) => {
+  const { data: session } = useSession()
   console.log(request, 'this is the request in the params thing dynamic')
-  // requests have a company, position, joblisting, and highlights
+  console.log(session, 'this is the session in the params thing dynamic')
+
+  // I need to make sure that the user of the object and the user of the session are the same
+  if (request.user !== session.user.name) {
+    return <div>This isn't your request.</div>
+  }
+
   return (
     <main>
       <h1>Query</h1>
@@ -36,7 +43,12 @@ export async function getServerSideProps(context) {
   } else {
     await dbConnect()
     const request = await Request.findOne({ _id: context.params.id }).lean()
-    return { props: { request: JSON.parse(JSON.stringify(request)) } }
+    return {
+      props: {
+        request: JSON.parse(JSON.stringify(request)),
+        session: JSON.parse(JSON.stringify(session)),
+      },
+    }
   }
 }
 
