@@ -36,18 +36,6 @@ const UserPage = ({ user, requests }) => {
       <div className="card">
         <h1 className="user-name">Name: {user?.name}</h1>
         <Image src={user?.avatar} height={64} width={64} />
-        <p>Cover Letters: {user?.coverletters.length}</p>
-        <p>Queries: {user?.queries.length}</p>
-        {user?.queries.length > 0 && (
-          <Link href={`/api/queries/${user.queries[0]}`}>
-            <a>View Query</a>
-          </Link>
-        )}
-        {user?.coverletters.length > 0 && (
-          <Link href={`/api/coverletters/${user.coverletters[0]}`}>
-            <a>View Cover Letter</a>
-          </Link>
-        )}
 
         <div>
           <Link

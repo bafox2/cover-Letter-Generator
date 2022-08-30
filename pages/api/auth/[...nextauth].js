@@ -25,6 +25,7 @@ export default NextAuth({
       const newUser = await User.create({
         name: user.name,
         avatar: user.image,
+        requests: 0,
       })
 
       console.log('new user created')

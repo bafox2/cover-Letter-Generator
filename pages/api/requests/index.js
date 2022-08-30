@@ -1,5 +1,6 @@
 import dbConnect from '../../../lib/dbConnect'
 import Request from '../../../models/Request'
+import User from '../../../models/User'
 import gpt from '../gpt'
 import { useSession } from 'next-auth/react'
 
@@ -26,8 +27,17 @@ export default async function handler(req, res) {
           result: 'gpt(body.data)',
           // result: await gpt(body.data),
         })
-        console.log('this is the result of the request', request)
-        res.status(201).json(request)
+        const user = await User.findOne({ name: req.body.data.user })
+        const limitRate = await user.compareLastRequest()
+        if (limitRate) {
+          await user.incrementRequests()
+
+          res.status(201).json(request)
+        } else {
+          res
+            .status(429)
+            .json({ error: 'You have reached your request limit.' })
+        }
       } catch (error) {
         console.log(error)
         res.status(500).json({ error: error.message })
@@ -38,8 +48,3 @@ export default async function handler(req, res) {
       break
   }
 }
-
-// const example = {
-//   data: { company: 'a', positition: 'a', highlights: 'a', jobListing: 'a' },
-//   user: 'bafox2'
-// }
