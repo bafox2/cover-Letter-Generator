@@ -4,8 +4,6 @@ import { getSession, useSession } from 'next-auth/react'
 
 const SampleLetter = ({ request }) => {
   const { data: session } = useSession()
-  console.log(request, 'this is the request in the params thing dynamic')
-  console.log(session, 'this is the session in the params thing dynamic')
 
   // I need to make sure that the user of the object and the user of the session are the same
   if (request.user !== session.user.name) {
@@ -31,7 +29,6 @@ const SampleLetter = ({ request }) => {
 }
 
 export async function getServerSideProps(context) {
-  console.log(context)
   const session = await getSession(context)
   if (!session) {
     return {

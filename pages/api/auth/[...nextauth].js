@@ -1,5 +1,7 @@
 import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
+import dbConnect from '../../../lib/dbConnect'
+import User from '../../../models/User'
 
 export default NextAuth({
   providers: [
@@ -10,14 +12,23 @@ export default NextAuth({
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async registeToDB(session, token, user) {
-      console(session, token, user, 'registeToDB params')
-      // const user = await db.collection('users').findOne({ name })
-      // if (user) {
-      //   return res.status(400).json({ message: 'User already exists' })
-      // }
-      // await db.collection('users').insertOne({ name, email })
-      // return res.status(200).json({ message: 'User created' })
+    async signIn({ user, account, profile, email, credentials }) {
+      await dbConnect()
+      const existingUser = await User.findOne({
+        name: user.name,
+      })
+      if (existingUser) {
+        console.log('user exists')
+        return true
+      }
+
+      const newUser = await User.create({
+        name: user.name,
+        avatar: user.image,
+      })
+
+      console.log('new user created')
+      return true
     },
   },
 })

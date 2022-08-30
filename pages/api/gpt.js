@@ -1,3 +1,5 @@
+import { userAgent } from 'next/server'
+
 const { Configuration, OpenAIApi } = require('openai')
 
 const configuration = new Configuration({
@@ -22,3 +24,8 @@ export default async function (req, res) {
 function generatePrompt(data) {
   return `Create a 50 word cover letter with the following parameters:\nCompany: ${data.company}\nCompany highlights: ${data.highlights}\nPosition: ${data.position}\nJob Listing: ${data.jobListing}`
 }
+
+//max tokens change, prompt changes
+//can make the check for timing work here/print out the value for when the refresh is
+//user.lastupdate() - date.now() > 1000 * 60 * 60 * 24 * 7
+//then increment callcount

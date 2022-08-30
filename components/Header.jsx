@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 const Header = () => {
   const { data: session } = useSession()
-  console.log(session, 'session from header')
+  console.log(session, 'session from header with useSession')
   //use the nextjs router
   return (
     <header className="header">

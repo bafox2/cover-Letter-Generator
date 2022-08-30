@@ -9,7 +9,7 @@ const RequestSchema = new mongoose.Schema(
     jobListing: String,
     result: String,
   },
-  { collection: 'requests' }
+  { collection: 'requests', timestamps: true }
 )
 
 module.exports =
