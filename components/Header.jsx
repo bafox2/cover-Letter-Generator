@@ -25,6 +25,11 @@ const Header = () => {
               <a>Example</a>
             </Link>
           </li>
+          <li>
+            <Link href="/demo">
+              <a>Demo</a>
+            </Link>
+          </li>
         </ul>
       </nav>
       <div>

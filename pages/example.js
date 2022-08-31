@@ -1,11 +1,16 @@
 import styles from '../styles/Home.module.scss'
+import Request from '../models/Request'
+import dbConnect from '../lib/dbConnect'
 
-export default function Example() {
+export default function Example({ all }) {
+  //write something to change this to pick a random request to show
+  const randomExample = all[Math.floor(Math.random() * all.length)]
+  console.log(randomExample, 'so random')
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>Example</h1>
-
+        <div></div>
         <p className={styles.description}>
           A quick example of how to use this tool and what it does.
         </p>
@@ -75,4 +80,17 @@ export default function Example() {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  //get a random request from the database and return it to the page using props in nextjs
+  await dbConnect()
+  const requests = await Request.find({})
+  console.log(requests, 'this is the random request')
+
+  return {
+    props: {
+      all: JSON.parse(JSON.stringify(requests)),
+    },
+  }
 }

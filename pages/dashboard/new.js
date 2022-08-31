@@ -15,7 +15,7 @@ export default function QueryPage() {
 
   const { data: session } = useSession()
   async function onSubmit(data) {
-    data = { data, user: session.user.name }
+    data = { data, user: session.user.name, type: 'user' }
     const response = await fetch('/api/requests', {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ export default function QueryPage() {
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <input {...register('company')} placeholder="Company" />
           {errors.company && <p>{errors.company.message}</p>}
-          <input {...register('positition')} placeholder="Position" />
+          <input {...register('position')} placeholder="Position" />
           {errors.company && <p>{errors.company.message}</p>}
           <input {...register('highlights')} placeholder="Highlights" />
           {errors.highlights && <p>{errors.highlights.message}</p>}

@@ -21,6 +21,7 @@ UserSchema.methods.incrementRequests = async function () {
 }
 
 UserSchema.methods.compareLastRequest = async function () {
+  //should either return true, or it should return the amount of time needed to wait until the next request can be made
   const lastRequest = this.updatedAt
   if (lastRequest) {
     const lastRequestDate = new Date(lastRequest)
@@ -30,11 +31,23 @@ UserSchema.methods.compareLastRequest = async function () {
       return true
     }
   }
+  return Math.abs(difference - 1000 * 60 * 60 * 12)
+}
 
-  return false
+UserSchema.methods.calculateNextRequest = async function () {
+  console.log('in calculate next request')
+  const lastRequest = this.updatedAt
+  if (lastRequest) {
+    const lastRequestDate = new Date(lastRequest)
+    const currentDate = new Date()
+    const difference = Math.abs(currentDate - lastRequestDate)
+    if (difference > 1000 * 60 * 60 * 12) {
+      return true
+    }
+    if (difference < 1000 * 60 * 60 * 12) {
+      return Math.abs(difference - 1000 * 60 * 60 * 12)
+    }
+  }
 }
 
 export default mongoose.models.User || mongoose.model('User', UserSchema)
-
-//compare last request for user should be 12 hours
-//i should display the last request if it is unavailable for someone looking to try the guest account

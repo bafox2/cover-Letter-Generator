@@ -18,26 +18,29 @@ export default async function handler(req, res) {
       break
     case 'POST':
       try {
+        const user = await User.findOne({ name: req.body.data.user })
+        const limitRate = await user.compareLastRequest()
         const request = await Request.create({
           company: req.body.data.data.company,
           position: req.body.data.data.position,
           jobListing: req.body.data.data.jobListing,
           highlights: req.body.data.data.highlights,
           user: req.body.data.user,
+          type: req.body.data.type,
           result: 'gpt(body.data)',
           // result: await gpt(body.data),
         })
-        const user = await User.findOne({ name: req.body.data.user })
-        const limitRate = await user.compareLastRequest()
         if (limitRate) {
           await user.incrementRequests()
-
           res.status(201).json(request)
         } else {
           res
             .status(429)
-            .json({ error: 'You have reached your request limit.' })
+            .json({
+              error: `you must wait until ${user.calculateNextRequest()} to make your next post`,
+            })
         }
+        res.status(201).json(request)
       } catch (error) {
         console.log(error)
         res.status(500).json({ error: error.message })
