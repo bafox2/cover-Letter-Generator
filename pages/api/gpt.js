@@ -17,8 +17,23 @@ export default async function generateText(req, res) {
     frequency_penalty: 1.54,
     presence_penalty: 1.52,
   })
+  const filterResponse = await openai.complete({
+    engine: 'content-filter-alpha-c4',
+    prompt: '< endoftext|>' + response + '\n--\nLabel:',
+    temperature: 0,
+    maxTokens: 1,
+    topp: 1,
+    frequencyPenalty: 0,
+    presencePenalty: 0,
+    logprobs: 10,
+  })
+  const filterLabel = filterResponse.data.choices[0].text
   console.log(response.data.choices[0].text, 'gere is what gpt made')
-  return response.data.choices[0].text
+  console.log(filterResponse.data.choices[0].text, 'gere is what gpt made')
+  if (filterLabel == '0' || filterLabel == '1') {
+    return filterLabel
+  }
+  return 'please modify your parameters next time, this was flagged by GPT as inappropriate'
 }
 
 function generatePrompt(data) {
