@@ -7,7 +7,7 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration)
 
-export default async function (req, res) {
+export default async function generateText(req, res) {
   const response = await openai.createCompletion({
     model: 'text-davinci-002',
     prompt: generatePrompt(req),

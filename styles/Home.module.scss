@@ -115,6 +115,25 @@
   margin-left: 0.5rem;
 }
 
+.button {
+  background: #0070f3;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  min-width: 100px;
+  &:hover,
+  &:focus,
+  &:active {
+    background: #0060e9;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

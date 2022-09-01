@@ -49,9 +49,9 @@ export default function QueryPage({ nextpost, lastpost }) {
           )}
 
           <p>
-            GPT3 isn't free, the 'free' requests without signing in are only
-            available once every two hours. In the meantime, you can view the
-            last request done by a user, just like <b>you</b>.
+            GPT3 isn&#39;t free, the &#39;free&#39; requests without signing in
+            are only available once every two hours. In the meantime, you can
+            view the last request done by a user, just like <b>you</b>.
           </p>
         </div>
         <div>

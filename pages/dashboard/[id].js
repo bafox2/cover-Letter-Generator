@@ -7,7 +7,7 @@ const SampleLetter = ({ request }) => {
 
   // I need to make sure that the user of the object and the user of the session are the same
   if (request.user !== session.user.name) {
-    return <div>This isn't your request.</div>
+    return <div>This isn&#39;t your request.</div>
   }
 
   return (

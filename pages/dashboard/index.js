@@ -35,7 +35,7 @@ const UserPage = ({ user, requests }) => {
     <main key={user}>
       <div className="card">
         <h1 className="user-name">Name: {user?.name}</h1>
-        <Image src={user?.avatar} height={64} width={64} />
+        <Image src={user?.avatar} height={64} width={64} alt="avatar" />
 
         <div>
           <Link

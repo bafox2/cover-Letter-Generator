@@ -5,7 +5,6 @@ import dbConnect from '../lib/dbConnect'
 export default function Example({ all }) {
   //write something to change this to pick a random request to show
   const randomExample = all[Math.floor(Math.random() * all.length)]
-  console.log(randomExample, 'so random')
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -45,9 +44,10 @@ export default function Example({ all }) {
           <h2>Outputs</h2>
           <div className={styles.card}>
             <h2>Cover Letter</h2>
+
             <p className={styles.wide}>
               Sofia Flores (123) 456 7891 sflores@email.com May 1, 2018 Dear
-              Hiring Manager, I'm excited to be applying for the Software
+              Hiring Manager, I&#39;m excited to be applying for the Software
               Developer position at Cloud Clearwater. With software development,
               there is always something new to discover. Designing a program
               that is truly helpful to the user is my ultimate goal on every
@@ -66,14 +66,14 @@ export default function Example({ all }) {
               followed direction from the team leader for other requirements.
               The implementation of the online workbook resulted in a 25% faster
               completion time for measurable tasks the following year. Thank you
-              for your time and consideration. I'm looking forward to learning
-              more about the Software Developer position and about Cloud
-              Clearwater. As a Software Developer, my goal is to continually
-              increase my programming skills in order to present better
-              solutions to my employers and their clients. I enjoy uncovering
-              new ideas and would use them to advance Cloud Clearwater's mission
-              to deliver viable solutions for digital storage. Sincerely, Sofia
-              Flores
+              for your time and consideration. I&#39;m looking forward to
+              learning more about the Software Developer position and about
+              Cloud Clearwater. As a Software Developer, my goal is to
+              continually increase my programming skills in order to present
+              better solutions to my employers and their clients. I enjoy
+              uncovering new ideas and would use them to advance Cloud
+              Clearwater&#39;s mission to deliver viable solutions for digital
+              storage. Sincerely, Sofia Flores
             </p>
           </div>
         </div>
