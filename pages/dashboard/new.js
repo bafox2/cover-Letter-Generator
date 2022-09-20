@@ -101,7 +101,9 @@ export default function QueryPage() {
             <p className={styles.error}>{errors.style.message}</p>
           )}
         </div>
-        <button type="submit">Submit</button>
+        <button className={styles.submit} type="submit">
+          Submit
+        </button>
       </form>
     </div>
   )

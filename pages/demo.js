@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.scss'
+import styles from '../styles/Form.module.scss'
 import { useForm } from 'react-hook-form'
 import dbConnect from '../lib/dbConnect'
 import Request from '../models/Request'
@@ -63,15 +63,74 @@ export default function QueryPage({ nextpost, lastpost }) {
       </div>
       {nextpost === true && (
         <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <input {...register('company')} placeholder="Company" />
-          {errors.company && <p>{errors.company.message}</p>}
-          <input {...register('position')} placeholder="Position" />
-          {errors.company && <p>{errors.company.message}</p>}
-          <input {...register('highlights')} placeholder="Highlights" />
-          {errors.highlights && <p>{errors.highlights.message}</p>}
-          <input {...register('jobListing')} placeholder="Job Listing" />
-          {errors.style && <p>{errors.style.message}</p>}
-          <button type="submit">Submit</button>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="company">
+              Company
+            </label>
+            <p className={styles.form__description}>
+              Name of the place you want to work
+            </p>
+            <input
+              className={styles.form__input}
+              {...register('company')}
+              placeholder="Company"
+            />
+            {errors.company && (
+              <p className={styles.error}>{errors.company.message}</p>
+            )}
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="position">
+              Position
+            </label>
+            <p className={styles.form__description}>
+              Name of the place you want to work
+            </p>
+            <input
+              className={styles.form__input}
+              {...register('position')}
+              placeholder="Position"
+            />
+            {errors.position && (
+              <p className={styles.error}>{errors.position.message}</p>
+            )}
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="location">
+              Highlights
+            </label>
+            <p className={styles.form__description}>
+              Things you want to the AI to talk about that you bring to the
+              table
+            </p>
+            <input
+              className={styles.form__input}
+              {...register('highlights')}
+              placeholder="Highlights"
+            />
+            {errors.highlights && (
+              <p className={styles.error}>{errors.highlights.message}</p>
+            )}
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="location">
+              Job Listing
+            </label>
+            <p className={styles.form__description}>
+              Things that they are looking for in this position
+            </p>
+            <input
+              className={styles.form__input}
+              {...register('jobListing')}
+              placeholder="Job Listing"
+            />
+            {errors.style && (
+              <p className={styles.error}>{errors.style.message}</p>
+            )}
+          </div>
+          <button className={styles.submit} type="submit">
+            Submit
+          </button>
         </form>
       )}
     </div>

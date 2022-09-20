@@ -11,7 +11,7 @@ const SampleLetter = ({ request }) => {
   }
 
   return (
-    <main>
+    <>
       <h1>Query</h1>
       <div>
         <h2>Inputs</h2>
@@ -24,7 +24,7 @@ const SampleLetter = ({ request }) => {
         <h2>Output</h2>
         <p>{request.result}</p>
       </div>
-    </main>
+    </>
   )
 }
 

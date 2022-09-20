@@ -2,7 +2,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import styles from '../styles/Home.module.scss'
+import styles from '../styles/Header.module.scss'
 import { mdiPost, mdiContain } from '@mdi/js'
 import { Icon } from '@mdi/react'
 
@@ -11,10 +11,10 @@ const Header = () => {
   console.log(session, 'session from header with useSession')
   //use the nextjs router
   return (
-    <header className="header">
+    <header>
       <nav>
-        <ul>
-          <li>
+        <ul className={styles.navbar}>
+          <li className={styles.nav__link}>
             <Link href="/">
               <a>
                 <Icon path={mdiPost} size={1.5} color="white" />
@@ -22,17 +22,17 @@ const Header = () => {
               </a>
             </Link>
           </li>
-          <li>
+          <li className={styles.nav__link}>
             <Link href="/about">
               <a>About</a>
             </Link>
           </li>
-          <li>
+          <li className={styles.nav__link}>
             <Link href="/example">
               <a>Example</a>
             </Link>
           </li>
-          <li>
+          <li className={styles.nav__link}>
             <Link href="/demo">
               <a>Demo</a>
             </Link>
