@@ -24,42 +24,39 @@ const UserPage = ({ user, requests }) => {
   }
 
   if (!session) {
-    return (
-      <main>
-        <div>you</div>
-      </main>
-    )
+    return <div>you need to log in to see this!</div>
   }
 
   return (
-    <main key={user}>
-      <div className="card">
-        <h1 className="user-name">Name: {user?.name}</h1>
-        <Image src={user?.avatar} height={64} width={64} alt="avatar" />
+    <div className="card" key={user}>
+      <h1 className="user-name">Name: {user?.name}</h1>
+      <Image src={user?.avatar} height={64} width={64} alt="avatar" />
 
+      <div>
+        <Link
+          href={{
+            pathname: `/dashboard/new`,
+          }}
+        >
+          <a>New Query</a>
+        </Link>
+        <h2>Letters</h2>
         <div>
-          <Link
-            href={{
-              pathname: `/dashboard/new`,
-            }}
-          >
-            <a>Past Queries</a>
-          </Link>
-          <div>
-            {requests.map((request) => (
-              <div key={request._id}>
-                <Link href={`/dashboard/${request._id}`}>
-                  <a>{request.company}</a>
-                </Link>
-              </div>
-            ))}
-          </div>
+          {requests.map((request) => (
+            <div key={request._id}>
+              <Link href={`/dashboard/${request._id}`}>
+                <a>{request.company}</a>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
-      <button onClick={handleDelete}>Delete Self</button>
-    </main>
+    </div>
   )
 }
+
+//disclaimer - this is a fun project to dip my toes into tech that captivates me.
+// Check your cover letter and use it as an inspiration. OpenAI allows the public to use their GPT-3 API and it is our duty to use it responsibly.
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)

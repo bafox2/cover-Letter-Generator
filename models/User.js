@@ -31,12 +31,16 @@ UserSchema.methods.compareLastRequest = async function () {
       return true
     }
   }
+  const difference = Math.abs(new Date() - lastRequest)
   return Math.abs(difference - 1000 * 60 * 60 * 12)
 }
 
 UserSchema.methods.calculateNextRequest = async function () {
   console.log('in calculate next request')
   const lastRequest = this.updatedAt
+  if (lastRequest == this.createAt) {
+    return true
+  }
   if (lastRequest) {
     const lastRequestDate = new Date(lastRequest)
     const currentDate = new Date()
@@ -48,6 +52,7 @@ UserSchema.methods.calculateNextRequest = async function () {
       return Math.abs(difference - 1000 * 60 * 60 * 12)
     }
   }
+  return 'request limit reached'
 }
 
 export default mongoose.models.User || mongoose.model('User', UserSchema)

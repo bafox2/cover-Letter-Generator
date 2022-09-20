@@ -12,28 +12,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>Cover Letter Generator</h1>
+      <h1 className={styles.title}>Cover Letter Generator</h1>
 
-        <p className={styles.description}>
-          Get started by logging into your Github account.
-        </p>
-        <div className={styles.grid}>
-          <Link href="/about">
-            <a href="https://nextjs.org/docs" className={styles.card}>
-              <h2>About</h2>
-              <p>Learn about the stack used to make this</p>
-            </a>
-          </Link>
+      <p className={styles.description}>
+        Get started by logging into your Github account.
+      </p>
+      <div className={styles.grid}>
+        <Link href="/about">
+          <a href="https://nextjs.org/docs" className={styles.card}>
+            <h2>About</h2>
+            <p>Learn about the stack used to make this</p>
+          </a>
+        </Link>
 
-          <Link href="/example">
-            <a href="https://nextjs.org/docs" className={styles.card}>
-              <h2>Example Letter</h2>
-              <p>See this tool with generic inputs</p>
-            </a>
-          </Link>
-        </div>
-      </main>
+        <Link href="/example">
+          <a href="https://nextjs.org/docs" className={styles.card}>
+            <h2>Example Letter</h2>
+            <p>See this tool with generic inputs</p>
+          </a>
+        </Link>
+      </div>
     </div>
   )
 }

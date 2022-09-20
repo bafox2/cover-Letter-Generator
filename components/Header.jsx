@@ -3,6 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.scss'
+import { mdiPost, mdiContain } from '@mdi/js'
+import { Icon } from '@mdi/react'
+
 const Header = () => {
   const { data: session } = useSession()
   console.log(session, 'session from header with useSession')
@@ -13,7 +16,10 @@ const Header = () => {
         <ul>
           <li>
             <Link href="/">
-              <a>Home</a>
+              <a>
+                <Icon path={mdiPost} size={1.5} color="white" />
+                {''}
+              </a>
             </Link>
           </li>
           <li>

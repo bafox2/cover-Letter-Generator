@@ -36,46 +36,44 @@ export default function QueryPage({ nextpost, lastpost }) {
   console.log()
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Powered by <a href="https://openai.com">open.ai!</a>
-        </h1>
-        <div>
-          <h2>Demo Timing</h2>
-          {nextpost === true ? (
-            <h3>{`Available now!`}</h3>
-          ) : (
-            <h3>{`Available in ${formatMilliseconds(nextpost)}`}</h3>
-          )}
-
-          <p>
-            GPT3 isn&#39;t free, the &#39;free&#39; requests without signing in
-            are only available once every two hours. In the meantime, you can
-            view the last request done by a user, just like <b>you</b>.
-          </p>
-        </div>
-        <div>
-          <h2>Last Demo</h2>
-          <p>{lastpost.company}</p>
-          <p>{lastpost.position}</p>
-          <p>{lastpost.highlights}</p>
-          <p>{lastpost.jobListing}</p>
-          <p>{lastpost.result}</p>
-        </div>
-        {nextpost === true && (
-          <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <input {...register('company')} placeholder="Company" />
-            {errors.company && <p>{errors.company.message}</p>}
-            <input {...register('position')} placeholder="Position" />
-            {errors.company && <p>{errors.company.message}</p>}
-            <input {...register('highlights')} placeholder="Highlights" />
-            {errors.highlights && <p>{errors.highlights.message}</p>}
-            <input {...register('jobListing')} placeholder="Job Listing" />
-            {errors.style && <p>{errors.style.message}</p>}
-            <button type="submit">Submit</button>
-          </form>
+      <h1 className={styles.title}>
+        Powered by <a href="https://openai.com">open.ai!</a>
+      </h1>
+      <div>
+        <h2>Demo Timing</h2>
+        {nextpost === true ? (
+          <h3>{`Available now!`}</h3>
+        ) : (
+          <h3>{`Available in ${formatMilliseconds(nextpost)}`}</h3>
         )}
-      </main>
+
+        <p>
+          GPT3 isn&#39;t free, the &#39;free&#39; requests without signing in
+          are only available once every two hours. In the meantime, you can view
+          the last request done by a user, just like <b>you</b>.
+        </p>
+      </div>
+      <div>
+        <h2>Last Demo</h2>
+        <p>{lastpost.company}</p>
+        <p>{lastpost.position}</p>
+        <p>{lastpost.highlights}</p>
+        <p>{lastpost.jobListing}</p>
+        <p>{lastpost.result}</p>
+      </div>
+      {nextpost === true && (
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
+          <input {...register('company')} placeholder="Company" />
+          {errors.company && <p>{errors.company.message}</p>}
+          <input {...register('position')} placeholder="Position" />
+          {errors.company && <p>{errors.company.message}</p>}
+          <input {...register('highlights')} placeholder="Highlights" />
+          {errors.highlights && <p>{errors.highlights.message}</p>}
+          <input {...register('jobListing')} placeholder="Job Listing" />
+          {errors.style && <p>{errors.style.message}</p>}
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </div>
   )
 }
