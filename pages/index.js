@@ -31,6 +31,12 @@ export default function Home() {
             <p>See this tool with generic inputs</p>
           </a>
         </Link>
+        <Link href="/disclaimer">
+          <a className={styles.card}>
+            <h2>Disclaimer</h2>
+            <p>Make sure you know what you are using!</p>
+          </a>
+        </Link>
       </div>
     </div>
   )
