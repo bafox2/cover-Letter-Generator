@@ -5,6 +5,7 @@ import dbConnect from '../../lib/dbConnect'
 import User from '../../models/User'
 import Requests from '../../models/Request'
 import { useSession, getSession } from 'next-auth/react'
+import styles from '../../styles/Dashboard.module.scss'
 
 const UserPage = ({ user, requests }) => {
   const { data: session, status } = useSession()
@@ -28,28 +29,37 @@ const UserPage = ({ user, requests }) => {
   }
 
   return (
-    <div className="card" key={user}>
-      <h1 className="user-name">Name: {user?.name}</h1>
-      <Image src={user?.avatar} height={64} width={64} alt="avatar" />
-
-      <div>
+    <div className={styles.dashboard} key={user}>
+      <div className={styles.dashboardUser}>
+        <h1 className={styles.userTitle}>Name: {user?.name}</h1>
+        <Image
+          src={user?.avatar}
+          height={320}
+          width={320}
+          alt="avatar"
+          className={styles.bigAvatar}
+        />
+      </div>
+      <div className={styles.requestTable}>
+        <h2>Letters</h2>
+        <ul>
+          {requests.map((request) => (
+            <Link href={`/dashboard/${request._id}`} key={request._id}>
+              <li>
+                <span className={styles.request}>{request.company}</span>
+                <span className={styles.request}>{request.createdAt}</span>
+              </li>
+              {/* possibly add in request.createdAt too */}
+            </Link>
+          ))}
+        </ul>
         <Link
           href={{
             pathname: `/dashboard/new`,
           }}
         >
-          <a>New Query</a>
+          <button className={styles.newRequest}>New Query</button>
         </Link>
-        <h2>Letters</h2>
-        <div>
-          {requests.map((request) => (
-            <div key={request._id}>
-              <Link href={`/dashboard/${request._id}`}>
-                <a>{request.company}</a>
-              </Link>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   )
@@ -71,7 +81,7 @@ export async function getServerSideProps(context) {
     await dbConnect()
 
     const user = await User.findOne({ name: session?.user.name }).lean()
-    const requests = await Requests.find({ user: session.user.name }).lean()
+    const requests = await Requests.find({ user: session.user.name })
     console.log(requests, 'requests')
 
     return {

@@ -33,14 +33,12 @@ export default async function handler(req, res) {
         if (limitRate) {
           await user.incrementRequests()
           res.status(201).json(request)
-        } else {
-          res
-            .status(429)
-            .json({
-              error: `you must wait until ${user.calculateNextRequest()} to make your next post`,
-            })
         }
-        res.status(201).json(request)
+        if (!limitRate) {
+          res.status(429).json({
+            error: `you must wait until ${user.calculateNextRequest()} to make your next post`,
+          })
+        }
       } catch (error) {
         console.log(error)
         res.status(500).json({ error: error.message })

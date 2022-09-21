@@ -10,7 +10,7 @@ const RequestSchema = new mongoose.Schema(
     result: String,
     type: String,
   },
-  { collection: 'requests' }
+  { timestamps: true }
 )
 
 module.exports =
