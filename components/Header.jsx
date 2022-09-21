@@ -37,40 +37,54 @@ const Header = () => {
               <a>Demo</a>
             </Link>
           </li>
+          {session && (
+            <li className={styles.nav__link}>
+              <Link href="/dashboard">
+                <a>Dashboard</a>
+              </Link>
+            </li>
+          )}
+
+          <li className={styles.nav__link}>
+            {session ? (
+              <Link
+                href={{
+                  pathname: `/dashboard`,
+                }}
+              >
+                <a className={styles.profile}>
+                  {' '}
+                  {/* <Image
+                    src={session?.user.image}
+                    height={32}
+                    width={32}
+                    alt="avatar"
+                    className={styles.avatar}
+                  ></Image> */}
+                  <span className={styles.username}>{session?.user.name}</span>
+                  <button
+                    className={styles.buttonHeader}
+                    onClick={() => signOut()}
+                  >
+                    Sign out
+                  </button>
+                </a>
+              </Link>
+            ) : (
+              <>
+                No profile <br />
+                <button
+                  className={styles.buttonHeader}
+                  onClick={() => signIn()}
+                >
+                  Sign in
+                </button>
+              </>
+            )}
+          </li>
         </ul>
       </nav>
-      <div>
-        {session ? (
-          <Link
-            href={{
-              pathname: `/dashboard`,
-            }}
-          >
-            <a>
-              Signed in as {session?.user.name}{' '}
-              <span>
-                <Image
-                  src={session?.user.image}
-                  height={32}
-                  width={32}
-                  alt="avatar"
-                ></Image>
-              </span>
-              <br />
-              <button className={styles.button} onClick={() => signOut()}>
-                Sign out
-              </button>
-            </a>
-          </Link>
-        ) : (
-          <>
-            Not signed in <br />
-            <button className={styles.button} onClick={() => signIn()}>
-              Sign in
-            </button>
-          </>
-        )}
-      </div>
+      <div></div>
     </header>
   )
 }
