@@ -10,6 +10,9 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  pages: {
+    signIn: '/signin',
+  },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
@@ -28,7 +31,6 @@ export default NextAuth({
         requests: 0,
       })
 
-      console.log('new user created')
       return true
     },
   },
