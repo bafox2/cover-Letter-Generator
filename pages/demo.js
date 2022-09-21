@@ -35,12 +35,12 @@ export default function QueryPage({ nextpost, lastpost }) {
   const onError = (errors, e) => console.log(errors, e, 'this is from on error')
   console.log()
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>
+    <>
+      {/* <h1 className={styles.title}>
         Powered by <a href="https://openai.com">open.ai!</a>
-      </h1>
-      <div>
-        <h2>Demo Timing</h2>
+      </h1> */}
+      <div className={styles.info}>
+        <h1>Demo</h1>
         {nextpost === true ? (
           <h3>{`Available now!`}</h3>
         ) : (
@@ -53,16 +53,10 @@ export default function QueryPage({ nextpost, lastpost }) {
           the last request done by a user, just like <b>you</b>.
         </p>
       </div>
-      <div>
-        <h2>Last Demo</h2>
-        <p>{lastpost.company}</p>
-        <p>{lastpost.position}</p>
-        <p>{lastpost.highlights}</p>
-        <p>{lastpost.jobListing}</p>
-        <p>{lastpost.result}</p>
-      </div>
-      {nextpost === true && (
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <div className={styles.demos}>
+        <div className={styles.lastDemo}>
+          <h2>Categories</h2>
+
           <div className={styles.form__group}>
             <label className={styles.form__label} htmlFor="company">
               Company
@@ -70,70 +64,134 @@ export default function QueryPage({ nextpost, lastpost }) {
             <p className={styles.form__description}>
               Name of the place you want to work
             </p>
-            <input
-              className={styles.form__input}
-              {...register('company')}
-              placeholder="Company"
-            />
-            {errors.company && (
-              <p className={styles.error}>{errors.company.message}</p>
-            )}
           </div>
           <div className={styles.form__group}>
-            <label className={styles.form__label} htmlFor="position">
+            <label className={styles.form__label} htmlFor="company">
               Position
             </label>
             <p className={styles.form__description}>
-              Name of the place you want to work
+              Name of the position being hired for
             </p>
-            <input
-              className={styles.form__input}
-              {...register('position')}
-              placeholder="Position"
-            />
-            {errors.position && (
-              <p className={styles.error}>{errors.position.message}</p>
-            )}
           </div>
           <div className={styles.form__group}>
-            <label className={styles.form__label} htmlFor="location">
+            <label className={styles.form__label} htmlFor="company">
               Highlights
             </label>
             <p className={styles.form__description}>
               Things you want to the AI to talk about that you bring to the
               table
             </p>
-            <input
-              className={styles.form__input}
-              {...register('highlights')}
-              placeholder="Highlights"
-            />
-            {errors.highlights && (
-              <p className={styles.error}>{errors.highlights.message}</p>
-            )}
           </div>
           <div className={styles.form__group}>
-            <label className={styles.form__label} htmlFor="location">
+            <label className={styles.form__label} htmlFor="company">
               Job Listing
             </label>
             <p className={styles.form__description}>
               Things that they are looking for in this position
             </p>
-            <input
-              className={styles.form__input}
-              {...register('jobListing')}
-              placeholder="Job Listing"
-            />
-            {errors.style && (
-              <p className={styles.error}>{errors.style.message}</p>
-            )}
           </div>
-          <button className={styles.submit} type="submit">
-            Submit
-          </button>
-        </form>
-      )}
-    </div>
+        </div>
+        <div className={styles.lastDemo}>
+          <h2>Last Demo</h2>
+
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="company">
+              Company
+            </label>
+            <p className={styles.form__description}>{lastpost.company}</p>
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="company">
+              Position
+            </label>
+            <p className={styles.form__description}>{lastpost.position}</p>
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="company">
+              Highlights
+            </label>
+            <p className={styles.form__description}>{lastpost.highlights}</p>
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="company">
+              Job Listing
+            </label>
+            <p className={styles.form__description}>{lastpost.jobListing}</p>
+          </div>
+          <div className={styles.form__group}>
+            <label className={styles.form__label} htmlFor="company">
+              Result
+            </label>
+            <p className={styles.form__description}>{lastpost.result}</p>
+          </div>
+        </div>
+        {nextpost === true && (
+          <form
+            className={styles.newDemo}
+            onSubmit={handleSubmit(onSubmit, onError)}
+          >
+            <h2>New Request</h2>
+            <div className={styles.form__group}>
+              <label className={styles.form__label} htmlFor="company">
+                Company
+              </label>
+              <input
+                className={styles.form__input}
+                {...register('company')}
+                placeholder="Company"
+              />
+              {errors.company && (
+                <p className={styles.error}>{errors.company.message}</p>
+              )}
+            </div>
+            <div className={styles.form__group}>
+              <label className={styles.form__label} htmlFor="position">
+                Position
+              </label>
+              <input
+                className={styles.form__input}
+                {...register('position')}
+                placeholder="Position"
+              />
+              {errors.position && (
+                <p className={styles.error}>{errors.position.message}</p>
+              )}
+            </div>
+            <div className={styles.form__group}>
+              <label className={styles.form__label} htmlFor="location">
+                Highlights
+              </label>
+
+              <input
+                className={styles.form__input}
+                {...register('highlights')}
+                placeholder="Highlights"
+              />
+              {errors.highlights && (
+                <p className={styles.error}>{errors.highlights.message}</p>
+              )}
+            </div>
+            <div className={styles.form__group}>
+              <label className={styles.form__label} htmlFor="location">
+                Job Listing
+              </label>
+
+              <input
+                className={styles.form__input}
+                {...register('jobListing')}
+                placeholder="Job Listing"
+              />
+              {errors.style && (
+                <p className={styles.error}>{errors.style.message}</p>
+              )}
+            </div>
+            <button className={styles.submit} type="submit">
+              Submit
+            </button>
+          </form>
+        )}
+      </div>
+    </>
   )
 }
 
