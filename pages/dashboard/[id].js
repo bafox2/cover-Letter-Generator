@@ -37,12 +37,22 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     }
-  } else {
+  }
+  if (context.params.id == undefined) {
+    return {
+      redirect: {
+        destination: '/dashboard',
+        permanent: false,
+      },
+    }
+  }
+  if (session) {
     await dbConnect()
-    const request = await Request.findOne({ _id: context.params.id }).lean()
+    console.log(context.params, 'context.params.id')
+    // const request = await Request.findOne({ _id: context.params.id }).lean()
     return {
       props: {
-        request: JSON.parse(JSON.stringify(request)),
+        // request: JSON.parse(JSON.stringify(request)),
         session: JSON.parse(JSON.stringify(session)),
       },
     }

@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .dashboard {
   display: flex;
   flex-direction: row;
@@ -24,7 +26,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+}
+.requestList {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
 }
 
 .newQuery {
@@ -36,19 +44,63 @@
 }
 
 .request {
-  font-size: 1.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
   border: 1px solid #eaeaea;
+  &.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid #eaeaea;
+  }
+}
+
+.request > * {
+  font-size: 1.3rem;
+
   padding: 5px;
 }
 
-.request:hover {
+.request:hover,
+.request:focus,
+.request:active {
+  transition: all 0.15s ease;
+  background: $primary;
+  color: $white;
+  text-decoration: bold;
 }
 
 .newRequest {
   border-radius: 10px;
-  background-color: black;
+  background-color: black; //here
+  color: white; //here
   border: 2px solid #eaeaea;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 5px;
+}
+
+.newRequest:hover,
+.newRequest:focus,
+.newRequest:active {
+  transition: all 0.15s ease;
+  background: $primary;
+  color: $white;
+  text-decoration: bold;
+}
+@media (prefers-color-scheme: dark) {
+  .card,
+  .footer {
+    border-color: #222;
+  }
+  .code {
+    background: #111;
+  }
+  .logo img {
+    filter: invert(1);
+  }
 }

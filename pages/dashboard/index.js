@@ -10,7 +10,6 @@ import styles from '../../styles/Dashboard.module.scss'
 const UserPage = ({ user, requests }) => {
   const { data: session, status } = useSession()
 
-  console.log(session, 'session being callled in user page with useSession')
   const handleDelete = async () => {
     const username = router.query.name
 
@@ -42,12 +41,21 @@ const UserPage = ({ user, requests }) => {
       </div>
       <div className={styles.requestTable}>
         <h2>Letters</h2>
-        <ul>
+        <ul className={styles.requestList}>
+          <li className={`${styles.request} ${styles.header}`}>
+            <div>Company</div>
+            <div>Date</div>
+          </li>
           {requests.map((request) => (
             <Link href={`/dashboard/${request._id}`} key={request._id}>
-              <li>
-                <span className={styles.request}>{request.company}</span>
-                <span className={styles.request}>{request.createdAt}</span>
+              <li className={styles.request}>
+                <div>{request.company}</div>
+                <div>
+                  {`${request.createdAt?.slice(
+                    5,
+                    10
+                  )} @ ${request.createdAt?.slice(11, 16)}`}
+                </div>
               </li>
               {/* possibly add in request.createdAt too */}
             </Link>

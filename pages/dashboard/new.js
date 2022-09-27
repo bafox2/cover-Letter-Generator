@@ -1,13 +1,17 @@
 import styles from '../../styles/Form.module.scss'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { getSession } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
 import Router from 'next/router'
+import { mdiLoading } from '@mdi/js'
+import { Icon } from '@mdi/react'
 
 export default function QueryPage() {
   //validations - maxlength for some, minlength,
+  //could add user to the
+  const [loading, setLoading] = useState(false)
 
-  //could add user to the body
   const {
     register,
     handleSubmit,
@@ -16,6 +20,7 @@ export default function QueryPage() {
 
   const { data: session } = useSession()
   async function onSubmit(data) {
+    setLoading((prevState) => !prevState)
     data = { data, user: session.user.name, type: 'user' }
     const response = await fetch('/api/requests', {
       method: 'POST',
@@ -24,8 +29,10 @@ export default function QueryPage() {
       },
       body: JSON.stringify({ data }),
     })
-    const json = await response.json()
-    Router.push(`/dashboard/${json._id}`)
+    setLoading((prevState) => !prevState)
+    const json = await response
+    console.log(json, 'this is from the json in the /dashboard/new.js')
+    // Router.push(`/dashboard/${json._id}`)
   }
 
   const onError = (errors, e) => console.log(errors, e)
@@ -105,13 +112,20 @@ export default function QueryPage() {
           Submit
         </button>
       </form>
+      {loading && (
+        <Icon
+          path={mdiLoading}
+          size={3}
+          color="blue"
+          className={styles.loading}
+        />
+      )}
     </div>
   )
 }
 
 export async function getServerSideProps(context) {
   const sessionAuth = await getSession(context)
-  console.log(sessionAuth, 'sessionfr om server side')
   if (!sessionAuth) {
     return {
       redirect: {
