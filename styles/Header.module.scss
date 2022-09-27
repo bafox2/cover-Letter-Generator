@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .navbar {
   top: 0;
   width: 100%;
@@ -22,15 +24,54 @@
 }
 
 .nav__link > * {
-  // color: $secondary-dark;
+  color: $black;
   text-decoration: none;
-  color: #eaeaea;
+}
+
+.nav__link :hover,
+.nav__link :focus,
+.nav__link :active {
+  transition: color 0.15s ease, border-color 0.15s ease;
+  color: $primary; //here
+  border-color: $primary-dark; //here
+  text-decoration: underline;
+}
+
+.nav__group {
+  margin: 0em 20% 0em 0%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.8em;
 }
 
 .logo {
-  position: relative;
-  top: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  margin: 0px;
+  padding: 0px;
 }
+
+.header__logo_svg {
+  width: 3.75rem;
+  height: 3.75rem;
+}
+
+.header__logo_svg > * {
+  fill: $primary;
+}
+
+.logo__line {
+  margin: -5px 0px;
+  font-size: 0.9em;
+}
+
+.logo__line::first-letter {
+  font-size: 1.1em;
+}
+
 .svg {
   // color: $secondary-dark;
 }
@@ -51,7 +92,49 @@
 }
 
 .buttonHeader {
-  background-color: black;
+  background: none;
   border: none;
   font: inherit;
+  border-radius: 10px;
+}
+
+.buttonHeader:active,
+.buttonHeader:focus,
+.buttonHeader:hover {
+  transition: all 0.15s ease;
+  background: $primary;
+  color: $white;
+  text-decoration: bold;
+}
+
+@media (max-width: 768px) {
+  .nav__link {
+    font-size: 0.8rem;
+  }
+  .header__logo_svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .nav__group {
+    margin: 0rem 0rem 0rem 0%;
+  }
+  .logo__line {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .card,
+  .footer {
+    border-color: #222;
+  }
+  .code {
+    background: #111;
+  }
+  .logo img {
+    // filter: invert(1);
+  }
+  .nav__link > * {
+    color: $white;
+  }
 }

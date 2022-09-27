@@ -8,81 +8,72 @@ import { Icon } from '@mdi/react'
 
 const Header = () => {
   const { data: session } = useSession()
-  console.log(session, 'session from header with useSession')
   //use the nextjs router
   return (
     <header>
-      <nav>
-        <ul className={styles.navbar}>
-          <li className={styles.nav__link}>
-            <Link href="/">
-              <a>
-                <Icon path={mdiPost} size={1.5} color="white" />
-                {''}
-              </a>
-            </Link>
-          </li>
-          <li className={styles.nav__link}>
+      <nav className={styles.navbar}>
+        <div className={styles.nav__link}>
+          <Link href="/">
+            <a className={styles.logo}>
+              <Icon
+                className={styles.header__logo_svg}
+                path={mdiPost}
+                color=""
+              />
+              <div className={styles.logo__tag}>
+                <p className={styles.logo__line}>Letter</p>
+                <p className={styles.logo__line}>Maker</p>
+              </div>
+            </a>
+          </Link>
+        </div>
+        <div className={styles.nav__group}>
+          <div className={styles.nav__link}>
             <Link href="/about">
               <a>About</a>
             </Link>
-          </li>
-          <li className={styles.nav__link}>
+          </div>
+          <div className={styles.nav__link}>
             <Link href="/example">
               <a>Example</a>
             </Link>
-          </li>
-          <li className={styles.nav__link}>
+          </div>
+          <div className={styles.nav__link}>
             <Link href="/demo">
               <a>Demo</a>
             </Link>
-          </li>
+          </div>
           {session && (
-            <li className={styles.nav__link}>
+            <div className={styles.nav__link}>
               <Link href="/dashboard">
                 <a>Dashboard</a>
               </Link>
-            </li>
+            </div>
           )}
-
-          <li className={styles.nav__link}>
-            {session ? (
-              <Link
-                href={{
-                  pathname: `/dashboard`,
-                }}
-              >
-                <a className={styles.profile}>
-                  {' '}
-                  {/* <Image
-                    src={session?.user.image}
-                    height={32}
-                    width={32}
-                    alt="avatar"
-                    className={styles.avatar}
-                  ></Image> */}
-                  <span className={styles.username}>{session?.user.name}</span>
-                  <button
-                    className={styles.buttonHeader}
-                    onClick={() => signOut()}
-                  >
-                    Sign out
-                  </button>
-                </a>
-              </Link>
-            ) : (
-              <>
-                No profile <br />
-                <button
-                  className={styles.buttonHeader}
-                  onClick={() => signIn()}
-                >
-                  Sign in
-                </button>
-              </>
-            )}
-          </li>
-        </ul>
+        </div>
+        <div className={styles.nav__link}>
+          {session ? (
+            // <Link
+            //   href={{
+            //     pathname: `/dashboard`,
+            //   }}
+            // >
+            <p className={styles.profile}>
+              <span className={styles.username}>{session?.user.name}</span>
+              <button className={styles.buttonHeader} onClick={() => signOut()}>
+                Sign out
+              </button>
+            </p>
+          ) : (
+            // </Link>
+            <>
+              No profile <br />
+              <button className={styles.buttonHeader} onClick={() => signIn()}>
+                Sign in
+              </button>
+            </>
+          )}
+        </div>
       </nav>
       <div></div>
     </header>
