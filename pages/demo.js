@@ -23,6 +23,7 @@ export default function QueryPage({ nextpost, lastpost }) {
       body: JSON.stringify({ data }),
     })
     const json = await response.json()
+    console.log(json)
   }
 
   const formatMilliseconds = (milliseconds) => {

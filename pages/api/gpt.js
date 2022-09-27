@@ -17,29 +17,62 @@ export default async function generateText(req, res) {
     frequency_penalty: 1.54,
     presence_penalty: 1.52,
   })
-  const filterResponse = await openai.complete({
-    engine: 'content-filter-alpha-c4',
-    prompt: '< endoftext|>' + response + '\n--\nLabel:',
-    temperature: 0,
-    maxTokens: 1,
-    topp: 1,
-    frequencyPenalty: 0,
-    presencePenalty: 0,
-    logprobs: 10,
-  })
-  const filterLabel = filterResponse.data.choices[0].text
-  console.log(response.data.choices[0].text, 'gere is what gpt made')
-  console.log(filterResponse.data.choices[0].text, 'gere is what gpt made')
-  if (filterLabel == '0' || filterLabel == '1') {
-    return filterLabel
+  const text = response.data.choices[0].text
+  console.log('text in gpt.js', text)
+  const isSafe = await checkInContentFilter(text)
+  console.log(isSafe, 'isSafe from gpt.js')
+  //this is what is stopping the flow
+  if (isSafe) {
+    return text
   }
-  return 'please modify your parameters next time, this was flagged by GPT as inappropriate'
+  if (!isSafe) {
+    console.log('not safe', isSafe)
+    return 'rejected by content filter'
+  }
 }
 
-function generatePrompt(data) {
-  if (data.type === 'user') {
-    return `Create a 200 word cover letter with the following parameters:\nCompany: ${data.company}\nCompany highlights: ${data.highlights}\nPosition: ${data.position}\nJob Listing: ${data.jobListing}`
+function generatePrompt(req) {
+  if (req.type === 'user') {
+    return `Create a 20 word cover letter with the following parameters:\nCompany: ${req.data.company}\nCompany highlights: ${req.data.highlights}\nPosition: ${req.data.position}\nJob Listing: ${req.data.jobListing}`
   } else {
-    return `Create a 50 word cover letter with the following parameters:\nCompany: ${data.company}\nCompany highlights: ${data.highlights}\nPosition: ${data.position}\nJob Listing: ${data.jobListing}`
+    return `Create a 20 word cover letter with the following parameters:\nCompany: ${req.data.company}\nCompany highlights: ${req.data.highlights}\nPosition: ${req.data.position}\nJob Listing: ${req.data.jobListing}`
   }
+}
+
+async function checkInContentFilter(message) {
+  const response = await openai.createCompletion({
+    model: 'content-filter-alpha',
+    prompt: '<|endoftext|>' + message + '\n--\nLabel:',
+    temperature: 0,
+    max_tokens: 1,
+    top_p: 0,
+    logprobs: 10,
+  })
+
+  let outputLabel = response.data['choices'][0]['text']
+  const toxicThreshold = -0.355
+  if (outputLabel === '2') {
+    const logprobs = response.data['choices'][0]['logprobs']['top_logprobs'][0]
+    if (logprobs['2'] < toxicThreshold) {
+      const logprob_0 = logprobs['0']
+      const logprob_1 = logprobs['1']
+
+      if (logprob_0 && logprob_1) {
+        if (logprob_0 >= logprob_1) {
+          outputLabel = '0'
+        } else {
+          outputLabel = '1'
+        }
+      } else if (logprob_0) {
+        outputLabel = '0'
+      } else if (logprob_1) {
+        outputLabel = '1'
+      }
+    }
+  }
+  if (!['0', '1', '2'].includes(outputLabel)) {
+    outputLabel = '2'
+  }
+
+  return outputLabel !== '2'
 }
