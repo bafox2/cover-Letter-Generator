@@ -10,7 +10,7 @@ const Signin = ({ providers }) => {
       <div className={styles.container}>
         <h1 className={styles.title}>Letter Maker</h1>
         <p className={styles.disclaimer}>
-          This app doesn't require any special permissions, Github is used
+          This app does not require any special permissions, Github is used
           solely for verification of identity.{' '}
         </p>
         {providers &&

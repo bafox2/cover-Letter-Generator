@@ -49,10 +49,10 @@ export async function getServerSideProps(context) {
   if (session) {
     await dbConnect()
     console.log(context.params, 'context.params.id')
-    // const request = await Request.findOne({ _id: context.params.id }).lean()
+    const request = await Request.findOne({ _id: context.params.id }).lean()
     return {
       props: {
-        // request: JSON.parse(JSON.stringify(request)),
+        request: JSON.parse(JSON.stringify(request)),
         session: JSON.parse(JSON.stringify(session)),
       },
     }
