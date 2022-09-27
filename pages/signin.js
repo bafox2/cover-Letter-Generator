@@ -16,6 +16,7 @@ const Signin = ({ providers }) => {
         {providers &&
           Object.values(providers).map((provider) => (
             <button
+              key={provider.name}
               className={styles.providerButton}
               onClick={() => signIn(provider.id)}
             >
