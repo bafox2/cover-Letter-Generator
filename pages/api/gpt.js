@@ -12,16 +12,15 @@ export default async function generateText(req, res) {
     model: 'text-davinci-002',
     prompt: generatePrompt(req),
     temperature: 0.54,
-    max_tokens: 3792,
+    max_tokens: 4000,
     top_p: 0.56,
-    frequency_penalty: 1.54,
+    frequency_penalty: 1.74,
     presence_penalty: 1.52,
   })
   const text = response.data.choices[0].text
   console.log('text in gpt.js', text)
   const isSafe = await checkInContentFilter(text)
   console.log(isSafe, 'isSafe from gpt.js')
-  //this is what is stopping the flow
   if (isSafe) {
     return text
   }
@@ -33,9 +32,9 @@ export default async function generateText(req, res) {
 
 function generatePrompt(req) {
   if (req.type === 'user') {
-    return `Create a 20 word cover letter with the following parameters:\nCompany: ${req.data.company}\nCompany highlights: ${req.data.highlights}\nPosition: ${req.data.position}\nJob Listing: ${req.data.jobListing}`
+    return `Create a cover letter from these inputs: Company- ${req.data.company} Company highlights- ${req.data.highlights} Position- ${req.data.position} Requirements: ${req.data.jobListing}`
   } else {
-    return `Create a 20 word cover letter with the following parameters:\nCompany: ${req.data.company}\nCompany highlights: ${req.data.highlights}\nPosition: ${req.data.position}\nJob Listing: ${req.data.jobListing}`
+    return `Create a cover letter from these inputs: Company- ${req.data.company} Company highlights- ${req.data.highlights} Position- ${req.data.position} Requirements: ${req.data.jobListing}`
   }
 }
 

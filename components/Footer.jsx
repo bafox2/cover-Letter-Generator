@@ -7,20 +7,15 @@ import {
   mdiRss,
 } from '@mdi/js'
 import styles from '../styles/Home.module.scss'
+import Link from 'next/link'
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <Icon path={mdiGithub} size={1.5} color="black " />
+        <a href="https://github.com/bafox2" target="_blank" rel="noopener noreferrer">
+          <Icon path={mdiGithub} size={1.5} color="black" />
+          <p>| bfox © 2022</p>
+       </a>
 
-      <Icon path={mdiMailboxOutline} size={1.5} color="black " />
-
-      <Icon path={mdiCodepen} size={1.5} color="black " />
-      {/* //https://codepen.io/bfox2 */}
-      <Icon path={mdiRss} size={1.5} color="black " />
-
-      <Icon path={mdiWeb} size={1.5} color="black " />
-      {/* https://bfox.dev */}
-      <p>| bfox © 2022</p>
     </footer>
   )
 }

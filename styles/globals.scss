@@ -16,6 +16,9 @@ a {
 a:hover {
   color: $primary;
 }
+a:visited {
+  color: inherit;
+}
 
 h1 {
   color: $black-light;
@@ -68,4 +71,8 @@ input:-moz-focusring {
   h1 {
     color: $white;
   }
+}
+
+form {
+  display: flex;
 }

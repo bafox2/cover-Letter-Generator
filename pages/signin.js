@@ -8,7 +8,7 @@ const Signin = ({ providers }) => {
   return (
     <main>
       <div className={styles.container}>
-        <h1 className={styles.title}>Letter Maker</h1>
+        <h1 className={styles.title}>Letter </h1>
         <p className={styles.disclaimer}>
           This app does not require any special permissions, Github is used
           solely for verification of identity.{' '}

@@ -8,31 +8,28 @@ export default function Example({ all }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Example</h1>
-      <div></div>
-      <p className={styles.description}>
-        A quick example of how to use this tool and what it does.
-      </p>
+
 
       <h2>Inputs</h2>
       <div className={styles.grid}>
         <div className={styles.card}>
           <h2>Company</h2>
-          <p>Vercel</p>
+          <p>Cloud Clearwater</p>
         </div>
         <div className={styles.card}>
           <h2>Position</h2>
-          <p>Junior Developer</p>
+          <p>Software Developer</p>
         </div>
         <div className={styles.card}>
           <h2>Company Highlights</h2>
           <p>
-            Company with the fastest and most developer friendly deployment in
-            all of web development.
+            Company with a mission to make the world a better place by
+            providing water to those who need it.
           </p>
         </div>
 
         <div className={styles.card}>
-          <h2>Job Listing</h2>
+          <h2>Job Requirements</h2>
           <p>
             Work with a team to build web applications that are user focused.
             Integrate systems.
@@ -41,10 +38,10 @@ export default function Example({ all }) {
       </div>
       <div>
         <h2>Outputs</h2>
-        <div className={styles.card}>
+        <div className={`${styles.wide}`}>
           <h2>Cover Letter</h2>
 
-          <p className={styles.wide}>
+          <p>
             Sofia Flores (123) 456 7891 sflores@email.com May 1, 2018 Dear
             Hiring Manager, I&#39;m excited to be applying for the Software
             Developer position at Cloud Clearwater. With software development,

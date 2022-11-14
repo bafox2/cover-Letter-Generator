@@ -1,6 +1,7 @@
 import Request from '../../models/Request'
 import dbConnect from '../../lib/dbConnect'
 import { getSession, useSession } from 'next-auth/react'
+import styles from '../../styles/Home.module.scss'
 
 const SampleLetter = ({ request }) => {
   const { data: session } = useSession()
@@ -15,12 +16,20 @@ const SampleLetter = ({ request }) => {
       <h1>Query</h1>
       <div>
         <h2>Inputs</h2>
-        <p>Company: {request.company}</p>
-        <p>Position: {request.position}</p>
-        <p>Job Listing: {request.jobListing}</p>
-        <p>Highlights: {request.highlights}</p>
+        <div>
+          <p>Company: {request.company}</p>
+        </div>
+        <div>
+          <p>Position: {request.position}</p>
+        </div>
+        <div>
+          <p>Job Listing: {request.jobListing}</p>
+        </div>
+        <div>
+          <p>Highlights: {request.highlights}</p>
+        </div>
       </div>
-      <div>
+      <div className={styles.wide}>
         <h2>Output</h2>
         <p>{request.result}</p>
       </div>
@@ -50,6 +59,16 @@ export async function getServerSideProps(context) {
     await dbConnect()
     console.log(context.params, 'context.params.id')
     const request = await Request.findOne({ _id: context.params.id }).lean()
+    //check to see if the user is the same as the user of the request
+    if (request.user !== session.user.name) {
+      console.log('this is not your request')
+      return {
+        redirect: {
+          destination: '/dashboard',
+          permanent: false,
+        },
+      }
+    }
     return {
       props: {
         request: JSON.parse(JSON.stringify(request)),

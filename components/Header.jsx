@@ -22,7 +22,7 @@ const Header = () => {
               />
               <div className={styles.logo__tag}>
                 <p className={styles.logo__line}>Letter</p>
-                <p className={styles.logo__line}>Maker</p>
+                <p className={styles.logo__line}>Starter</p>
               </div>
             </a>
           </Link>

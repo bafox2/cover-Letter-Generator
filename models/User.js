@@ -27,12 +27,12 @@ UserSchema.methods.compareLastRequest = async function () {
     const lastRequestDate = new Date(lastRequest)
     const currentDate = new Date()
     const difference = Math.abs(currentDate - lastRequestDate)
-    if (difference > 1000 * 60 * 60 * 12) {
+    if (difference > 1000 * 60 * 60 * 1) {
       return true
     }
   }
   const difference = Math.abs(new Date() - lastRequest)
-  return Math.abs(difference - 1000 * 60 * 60 * 12)
+  return Math.abs(difference - 1000 * 60 * 60 * 1)
 }
 
 UserSchema.methods.calculateNextRequest = async function () {
@@ -45,11 +45,11 @@ UserSchema.methods.calculateNextRequest = async function () {
     const lastRequestDate = new Date(lastRequest)
     const currentDate = new Date()
     const difference = Math.abs(currentDate - lastRequestDate)
-    if (difference > 1000 * 60 * 60 * 12) {
+    if (difference > 1000 * 60 * 60 * 1) {
       return true
     }
-    if (difference < 1000 * 60 * 60 * 12) {
-      return Math.abs(difference - 1000 * 60 * 60 * 12)
+    if (difference < 1000 * 60 * 60 * 1) {
+      return Math.abs(difference - 1000 * 60 * 60 * 1)
     }
   }
   return 'request limit reached'

@@ -14,7 +14,7 @@ export default function About() {
         <a href="https://nextjs.org/docs" className={styles.card}>
           <h2>Next js</h2>
           <p className={styles.cardText}>
-            Next js gave is a &lsquono assembly required &lsquo tool to give a
+            Next js gave is a <>&#8216;</>no assembly required<>&#8217;</> tool to give a
             great React developer experience.
           </p>
         </a>
