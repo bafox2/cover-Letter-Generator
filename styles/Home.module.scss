@@ -1,7 +1,9 @@
 @import './variables.scss';
 
 .container {
-  padding: 0 2rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  max-width: 800px;
 }
 
 .main {
@@ -106,7 +108,7 @@
     text-decoration: underline;
   }
   p {
-    color: red;
+    color: black;
   }
 }
 
@@ -180,10 +182,9 @@
 .card:active {
   h2 {
     text-decoration: none;
-    color: white;
   }
   p {
-    color: white;
+    filter: invert(1);
   }
 }
 }
