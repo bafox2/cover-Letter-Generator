@@ -1,37 +1,41 @@
 import Request from '../../models/Request'
 import dbConnect from '../../lib/dbConnect'
 import { getSession, useSession } from 'next-auth/react'
-import styles from '../../styles/Home.module.scss'
+import styles from '../../styles/Results.module.scss'
 
 const SampleLetter = ({ request }) => {
   const { data: session } = useSession()
 
   // I need to make sure that the user of the object and the user of the session are the same
   if (request.user !== session.user.name) {
-    return <div>This isn&#39;t your request.</div>
+    return <div className={styles.form__group}>This isn&#39;t your request.</div>
   }
 
   return (
     <>
       <h1>Query</h1>
-      <div>
+      <div className={styles.form__groupDiv}>
         <h2>Inputs</h2>
-        <div>
-          <p>Company: {request.company}</p>
+        <div className={styles.form__group}>
+          <p className={styles.form__label}>Company: </p>
+          <p className={styles.form}>{request.company}</p>
         </div>
-        <div>
-          <p>Position: {request.position}</p>
+        <div className={styles.form__group}>
+          <p className={styles.form__label}>Position:</p>
+          <p className={styles.form}>{request.position}</p>
         </div>
-        <div>
-          <p>Job Listing: {request.jobListing}</p>
+        <div className={styles.form__group}>
+          <p className={styles.form__label}>Job Listing</p>
+          <p className={styles.form}>{request.jobListing}</p>
         </div>
-        <div>
-          <p>Highlights: {request.highlights}</p>
+        <div className={styles.form__group}>
+          <p className={styles.form__label}>Highlights:</p>
+          <p className={styles.form}>{request.highlights}</p>
         </div>
       </div>
-      <div className={styles.wide}>
+      <div className={`${styles.form__group} ${styles.wide}`}>
         <h2>Output</h2>
-        <p>{request.result}</p>
+        <p className={styles.form}>{request.result}</p>
       </div>
     </>
   )

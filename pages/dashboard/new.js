@@ -1,4 +1,4 @@
-import styles from '../../styles/Form.module.scss'
+import styles from '../../styles/Results.module.scss'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { getSession } from 'next-auth/react'
@@ -39,11 +39,11 @@ export default function QueryPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>
+      <h1 className={styles.titleNew}>
         Powered by <a href="https://openai.com">open.ai!</a>
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <form className={styles.form__group} onSubmit={handleSubmit(onSubmit, onError)}>
         <div className={styles.form__group}>
           <label className={styles.form__label} htmlFor="company">
             Company

@@ -51,6 +51,7 @@
   justify-content: space-between;
   width: 100%;
   border: 1px solid #eaeaea;
+  cursor: pointer;
   &.header {
     display: flex;
     flex-direction: row;
@@ -61,10 +62,32 @@
   }
 }
 
+.requestHeader {
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid #eaeaea;
+}
+
 .request > * {
   font-size: 1.3rem;
 
   padding: 5px;
+}
+
+.requestHeader:hover,
+.requestHeader:focus,
+.requestHeader:active {
+  transition: all 0.15s ease;
+  text-decoration: none;
 }
 
 .request:hover,

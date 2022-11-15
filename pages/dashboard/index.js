@@ -42,7 +42,7 @@ const UserPage = ({ user, requests }) => {
       <div className={styles.requestTable}>
         <h2>Letters</h2>
         <ul style={{ marginLeft: '0px' }} className={styles.requestList}>
-          <li className={`${styles.request} ${styles.header}`}>
+          <li className={`${styles.requestHeader}`}>
             <div>Company</div>
             <div>Date</div>
           </li>

@@ -1,4 +1,10 @@
 @import './variables.scss';
+.titleNew {
+  margin: 20px;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
 
 .form__input {
   border: 1px solid $white-dark; //here
@@ -6,6 +12,17 @@
   padding: 5px;
   background-color: $white; //here
   color: $black;
+}
+
+.form__groupDiv {
+  margin: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid #eaeaea; //here
+  display: flex;
+  flex-direction: row;
+  flex-wrap: calc(100% / 3);
 }
 
 .form__group {
@@ -30,12 +47,6 @@
 
 .title {
   margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.titleNew {
-  margin: 20px;
   line-height: 1.15;
   font-size: 4rem;
 }
@@ -129,5 +140,9 @@
 @media (max-width: 600px) {
   .wide {
     max-width: 90%;
+  }
+  .form__groupDiv {
+    display: flex;
+    flex-direction: column;
   }
 }
