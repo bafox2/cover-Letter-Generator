@@ -35,7 +35,6 @@ export default async function handler(req, res) {
           highlights: req.body.data.data.highlights,
           user: req.body.data.user,
           type: req.body.data.type,
-          // result: 'gpt(body.data)',
           result: await gpt(req.body.data),
         })
         console.log('request from /api/request/index', request)
