@@ -13,6 +13,17 @@ export default NextAuth({
   pages: {
     signIn: '/signin',
   },
+  logger: {
+    error(code, metadata) {
+      log.error(code, metadata)
+    },
+    warn(code) {
+      log.warn(code)
+    },
+    debug(code, metadata) {
+      log.debug(code, metadata)
+    }
+  },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
