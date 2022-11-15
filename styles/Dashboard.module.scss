@@ -27,12 +27,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0px;
 }
 .requestList {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   align-items: stretch;
+  padding: 0px;
 }
 
 .newQuery {

@@ -41,7 +41,7 @@ const UserPage = ({ user, requests }) => {
       </div>
       <div className={styles.requestTable}>
         <h2>Letters</h2>
-        <ul className={styles.requestList}>
+        <ul style={{ marginLeft: '0px' }} className={styles.requestList}>
           <li className={`${styles.request} ${styles.header}`}>
             <div>Company</div>
             <div>Date</div>
@@ -60,6 +60,12 @@ const UserPage = ({ user, requests }) => {
               {/* possibly add in request.createdAt too */}
             </Link>
           ))}
+          {requests.length === 0 && (
+            <li className={styles.request}>
+              <div>No letters yet!</div>
+            </li>
+          )}
+
         </ul>
         <Link
           href={{
