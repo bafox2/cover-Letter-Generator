@@ -13,40 +13,40 @@ const Header = () => {
     <header>
       <nav className={styles.navbar}>
         <div className={styles.nav__link}>
-          <Link href="/">
-            <a className={styles.logo}>
-              <Icon
-                className={styles.header__logo_svg}
-                path={mdiPost}
-                color=""
-              />
-              <div className={styles.logo__tag}>
-                <p className={styles.logo__line}>Letter</p>
-                <p className={styles.logo__line}>Starter</p>
-              </div>
-            </a>
+          <Link href="/" className={styles.logo}>
+
+            <Icon
+              className={styles.header__logo_svg}
+              path={mdiPost}
+              color=""
+            />
+            <div className={styles.logo__tag}>
+              <p className={styles.logo__line}>Letter</p>
+              <p className={styles.logo__line}>Starter</p>
+            </div>
+
           </Link>
         </div>
         <div className={styles.nav__group}>
           <div className={styles.nav__link}>
             <Link href="/about">
-              <a>About</a>
+              About
             </Link>
           </div>
           <div className={styles.nav__link}>
             <Link href="/example">
-              <a>Example</a>
+              Example
             </Link>
           </div>
           <div className={styles.nav__link}>
             <Link href="/demo">
-              <a>Demo</a>
+              Demo
             </Link>
           </div>
           {session && (
             <div className={styles.nav__link}>
               <Link href="/dashboard">
-                <a>Dashboard</a>
+                Dashboard
               </Link>
             </div>
           )}
@@ -77,7 +77,7 @@ const Header = () => {
       </nav>
       <div></div>
     </header>
-  )
+  );
 }
 
 export default Header

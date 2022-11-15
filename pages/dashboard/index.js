@@ -47,7 +47,7 @@ const UserPage = ({ user, requests }) => {
             <div>Date</div>
           </li>
           {requests.map((request) => (
-            <Link href={`/dashboard/${request._id}`} key={request._id}>
+            <Link href={`/dashboard/${request._id}`} key={request._id} legacyBehavior>
               <li className={styles.request}>
                 <div>{request.company}</div>
                 <div>
@@ -65,12 +65,12 @@ const UserPage = ({ user, requests }) => {
           href={{
             pathname: `/dashboard/new`,
           }}
-        >
+          legacyBehavior>
           <button className={styles.newRequest}>New Query</button>
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
 //disclaimer - this is a fun project to dip my toes into tech that captivates me.
