@@ -8,6 +8,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+h1 {
+  color: $primary;
+}
+
 a {
   color: $primary;
   text-decoration: none;
@@ -20,9 +24,6 @@ a:visited {
   color: inherit;
 }
 
-h1 {
-  color: $black-light;
-}
 
 * {
   box-sizing: border-box;

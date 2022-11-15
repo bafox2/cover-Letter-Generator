@@ -1,10 +1,11 @@
 import { signIn, getProviders } from 'next-auth/react'
 import styles from '../styles/Signin.module.scss'
 import { getSession } from 'next-auth/react'
-import { mdiPost, mdiGithub } from '@mdi/js'
+import { mdiPost, mdiGithub, mdiGoogle } from '@mdi/js'
 import { Icon } from '@mdi/react'
 
 const Signin = ({ providers }) => {
+  console.log(providers)
   return (
     <main>
       <div className={styles.container}>
@@ -21,7 +22,10 @@ const Signin = ({ providers }) => {
               onClick={() => signIn(provider.id)}
             >
               <p>Sign in with {provider.name} </p>
-              <Icon path={mdiGithub} size={3} color="white" />
+              {provider.name === 'GitHub' ? (<Icon path={mdiGithub} size={3} />) : (<Icon path={mdiGoogle} size={3} />)}
+
+
+
             </button>
           ))}
       </div>

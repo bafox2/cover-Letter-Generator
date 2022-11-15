@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 import dbConnect from '../../../lib/dbConnect'
 import User from '../../../models/User'
 
@@ -8,6 +9,9 @@ export default NextAuth({
     GithubProvider({
       clientId: process.env.GITHUB_ID2,
       clientSecret: process.env.GITHUB_SECRET2,
+    }), GoogleProvider({
+      clientId: process.env.GGOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
   pages: {
