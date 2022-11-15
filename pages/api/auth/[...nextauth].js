@@ -30,6 +30,7 @@ export default NextAuth({
         avatar: user.image,
         requests: 0,
       })
+      newUser
 
       return true
     },
